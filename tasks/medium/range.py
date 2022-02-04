@@ -24,7 +24,6 @@ def list_compose(indexes: list, values: list) -> list:
     return result_list
 
 
-
 if __name__ == '__main__':
     assert list_compose(INDEX_LIST, VALUE_LIST) == ['b', 'f', None, None, 'c', 'd',
                                                     None, 'e']
