@@ -23,7 +23,7 @@
 - get_seconds(23, 0, 43) -> 82843
 - get_seconds(25, 0, 43) -> "Ошибка. Допустимое значение для часов 0..23"
 - get_seconds(23, 61, 43) -> "Ошибка. Допустимое значение для минут 0..59"
-- get_seconds(23, 0, -1) -> "Ошибка. Допустимое значение для секунд 0..59"
+- get_seconds(23, 0, -1) ->
 """
 from typing import Union
 
@@ -44,8 +44,19 @@ def get_seconds(h: int, m: int, s: int) -> Union[int, str]:
     :return: количество сеекунд от 00:00:00
     :rtype: int
     """
-    result = None
-    return result
+    if h in range(0, 24):
+        h = h * 3600
+    else:
+        return "Ошибка. Допустимое значение для часов 0..23"
+    if m in range(0, 60):
+        m = m * 60
+    else:
+        return "Ошибка. Допустимое значение для минут 0..59"
+    if s in range(0, 60):
+        result = s + m + h
+        return result
+    else:
+        return "Ошибка. Допустимое значение для секунд 0..59"
 
 
 if __name__ == '__main__':
